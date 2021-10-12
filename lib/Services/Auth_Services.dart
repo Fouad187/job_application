@@ -4,6 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:job_app/Models/User.dart';
 import 'package:job_app/Providers/Modal_hud.dart';
+import 'package:job_app/Providers/company_data.dart';
+import 'package:job_app/Providers/user_data.dart';
 import 'package:job_app/Screens/Company/Company_home_screen.dart';
 import 'package:job_app/Screens/User/User_home_screen.dart';
 import 'package:provider/provider.dart';
@@ -26,16 +28,16 @@ class Auth
           phone: (value2)['phone'],
           type: (value2)['type'],
         );
-       // final instance = Provider.of<Modelhud>(context, listen: false);
         final instance = Provider.of<ModalHud>(context, listen: false);
-        // Provider.of<UserData>(context , listen: false).setUser(userModel);
         if(type=='User')
         {
+          Provider.of<UserData>(context , listen: false).setUser(userModel);
           instance.changeIsLoading(false);
           Navigator.pushReplacementNamed(context, UserHomeScreen.id);
         }
         else if (type=='Company')
         {
+          Provider.of<CompanyData>(context , listen: false).setUser(userModel);
           instance.changeIsLoading(false);
           Navigator.pushReplacementNamed(context, CompanyHomeScreen.id);
         }
@@ -46,7 +48,7 @@ class Auth
   {
 
     await _auth.createUserWithEmailAndPassword(email: email, password: password).then((user) async {
-      UserModel usermodel=UserModel(
+      UserModel userModel=UserModel(
         id: user.user!.uid,
         name: name,
         email: email,
@@ -54,8 +56,16 @@ class Auth
         address: address,
         phone: phone,
       );
-      await Adduserdata(usermodel);
-      //Provider.of<UserData>(context , listen: false).setUser(usermodel);
+      await Adduserdata(userModel);
+      if(type=='User')
+        {
+          Provider.of<UserData>(context , listen: false).setUser(userModel);
+
+        }
+      else
+        {
+          Provider.of<CompanyData>(context , listen: false).setUser(userModel);
+        }
     });
 
   }

@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:job_app/Providers/company_data.dart';
+import 'package:job_app/Providers/user_data.dart';
 import 'package:job_app/Screens/Company/Company_home_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -20,6 +22,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<ModalHud>(create: (context) => ModalHud(),),
+        ChangeNotifierProvider<CompanyData>(create: (context) => CompanyData(),),
+        ChangeNotifierProvider<UserData>(create: (context) => UserData(),),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
