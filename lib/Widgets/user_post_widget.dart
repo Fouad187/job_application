@@ -23,6 +23,8 @@ class UserPostWidget extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.all(10),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+
             children: [
               Row(
                 children: [
@@ -39,6 +41,7 @@ class UserPostWidget extends StatelessWidget {
                 ],
               ),
               Divider(),
+              Text(post.jobTitle , style: TextStyle(fontWeight: FontWeight.bold),),
               Text(post.post),
               SizedBox(height: 10,),
               InkWell(
@@ -46,7 +49,7 @@ class UserPostWidget extends StatelessWidget {
                   if(!post.isApplied)
                     {
                      final userInstance=Provider.of<UserData>(context,listen: false).user;
-                      AppliedJob job=AppliedJob(postId: post.id, companyName: post.companyName, userId: userInstance.id, userMail: userInstance.email, userAddress: userInstance.address, userPhone: userInstance.phone);
+                      AppliedJob job=AppliedJob(postId: post.id, jobTitle: post.jobTitle,companyName: post.companyName, userId: userInstance.id, userMail: userInstance.email, userAddress: userInstance.address, userPhone: userInstance.phone);
                       Provider.of<UserData>(context,listen: false).apply(job: job, postIndex: index , appliedNumber: post.appliedNumber);
                     }
                 },

@@ -18,6 +18,7 @@ class CompanyPostWidget extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.all(10),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
 
@@ -39,6 +40,7 @@ class CompanyPostWidget extends StatelessWidget {
                 ],
               ),
               Divider(),
+              Text(post.jobTitle , style: TextStyle(fontWeight: FontWeight.bold),),
               Text(post.post),
               SizedBox(height: 10,),
               InkWell(

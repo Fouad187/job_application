@@ -4,9 +4,10 @@ class UserModel {
   late String email;
   late String phone;
   late String address;
+  late String cv;
   late String type;
   UserModel(
-      {required this.id, required this.name, required this.email ,required this.address, required this.phone,required this.type});
+      {required this.id, required this.name, required this.cv,required this.email ,required this.address, required this.phone,required this.type});
 
   UserModel.fromJson(Map <String, dynamic> map)
   {
@@ -20,6 +21,7 @@ class UserModel {
       phone= map['phone'];
       address= map['address'];
       type = map['type'];
+      cv=map['cv'];
     }
   }
 
@@ -32,6 +34,7 @@ class UserModel {
       'phone' : phone,
       'address' : address,
       'type' : type,
+      'cv':cv,
     };
   }
 

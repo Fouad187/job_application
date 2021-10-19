@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:job_app/Models/Applied_job.dart';
 import 'package:job_app/Models/Post.dart';
@@ -26,6 +28,20 @@ class UserData extends ChangeNotifier
     userServices.applyForJob(job: job , appliedNumber: appliedNumber).then((value) {
       posts[postIndex].isApplied=true;
       notifyListeners();
+    });
+  }
+  saveAndUploadCv({required File file, required String cvName , required String cvId , required String jobTitle,required String category})
+  {
+    userServices.uploadPdf(
+      file: file,
+      cvName: cvName,
+      jobTitle: jobTitle,
+      cvId: cvId,
+      userId: user.id,
+      category: category,
+      userName: user.name,
+    ).then((value)  {
+
     });
   }
 }

@@ -19,7 +19,10 @@ class _CompanyHomePageScreenState extends State<CompanyHomePageScreen> {
 
   var scaffoldKey=GlobalKey<ScaffoldState>();
   TextEditingController postController=TextEditingController();
+  TextEditingController jobTitleController=TextEditingController();
+
   late UserModel userInstance;
+
 @override
   void initState() {
     // TODO: implement initState
@@ -33,7 +36,13 @@ class _CompanyHomePageScreenState extends State<CompanyHomePageScreen> {
      userInstance=Provider.of<CompanyData>(context,listen: false).user;
     await Provider.of<CompanyData>(context,listen: false).getCompanyPosts(companyName: userInstance.name);
   }
-
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    postController.dispose();
+    jobTitleController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,6 +70,29 @@ class _CompanyHomePageScreenState extends State<CompanyHomePageScreen> {
                     ],
                   ),
                   SizedBox(height: 10,),
+                  Card(
+                    elevation: 5,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Container(
+                      padding: EdgeInsets.only(left: 10),
+                      child: TextFormField(
+                        controller: jobTitleController,
+                        validator: (value)
+                        {
+                          if(value==null)
+                          {
+                            return 'Enter your job Title';
+                          }
+                        },
+                        decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: 'job Title'
+                        ),
+                      ),
+                    ),
+                  ),
                   Expanded(child: Card(
                     elevation: 5,
                     shape: RoundedRectangleBorder(
@@ -97,6 +129,7 @@ class _CompanyHomePageScreenState extends State<CompanyHomePageScreen> {
                   {
                     Post post=Post(
                         id: getRandomId() ,
+                        jobTitle: jobTitleController.text,
                         appliedNumber: '0' ,
                         companyName: Provider.of<CompanyData>(context,listen: false).user.name,
                         companyPhoto: '' ,
@@ -107,7 +140,8 @@ class _CompanyHomePageScreenState extends State<CompanyHomePageScreen> {
                     companyServices.addNewPost(post).then((value) {
                       Provider.of<CompanyData>(context, listen: false).addToCompanyPostList(post);
                       Navigator.pop(context);
-
+                      postController.clear();
+                      jobTitleController.clear();
                     });
                   }
                 else

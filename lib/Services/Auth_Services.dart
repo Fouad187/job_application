@@ -27,7 +27,12 @@ class Auth
           address: (value2)['address'],
           phone: (value2)['phone'],
           type: (value2)['type'],
+          cv: (value2)['cv'],
         );
+        if(userModel.cv ==' ')
+          {
+            print('fouaddddddddddd');
+          }
         final instance = Provider.of<ModalHud>(context, listen: false);
         if(type=='User')
         {
@@ -55,6 +60,7 @@ class Auth
         type: type,
         address: address,
         phone: phone,
+        cv: '',
       );
       await Adduserdata(userModel);
       if(type=='User')

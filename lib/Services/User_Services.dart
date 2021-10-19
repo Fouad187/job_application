@@ -1,5 +1,10 @@
+
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:job_app/Models/Applied_job.dart';
+import 'package:job_app/Models/Cv.dart';
 import 'package:job_app/Models/Post.dart';
 import 'package:job_app/Providers/user_data.dart';
 import 'package:provider/provider.dart';
@@ -79,5 +84,24 @@ class UserServices {
         {
          'appliedNumber' : newNumber,
         });
+  }
+  Future<void> uploadPdf({required File file , required String cvName,required String cvId , required String userId , required String category
+  ,required String userName , required String jobTitle
+  }) async
+  {
+    final ref=FirebaseStorage.instance.ref().child('Cvs').child(cvName);
+    await ref.putFile(file);
+    final url=await ref.getDownloadURL();
+    CvModel cv=CvModel(id: cvId, userId: userId, cv: url, category: category, userName: userName, jobTitle: jobTitle);
+    savePdf(cv: cv);
+  }
+  Future<void> savePdf({required CvModel cv}) async
+  {
+    await FirebaseFirestore.instance.collection('Cv').doc().set(cv.toJson());
+    await FirebaseFirestore.instance.collection('Users').doc(cv.userId).update(
+      {
+        'cv' : cv.cv
+      }
+    );
   }
 }
