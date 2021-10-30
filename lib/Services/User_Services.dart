@@ -6,7 +6,11 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:job_app/Models/Applied_job.dart';
 import 'package:job_app/Models/Cv.dart';
 import 'package:job_app/Models/Post.dart';
+import 'package:job_app/Models/User.dart';
+import 'package:job_app/Providers/company_data.dart';
 import 'package:job_app/Providers/user_data.dart';
+import 'package:job_app/Services/Auth_Services.dart';
+import 'package:job_app/constant.dart';
 import 'package:provider/provider.dart';
 
 class UserServices {
@@ -85,7 +89,7 @@ class UserServices {
          'appliedNumber' : newNumber,
         });
   }
-  Future<void> uploadPdf({required File file , required String cvName,required String cvId , required String userId , required String category
+  Future<String> uploadPdf({required File file , required String cvName,required String cvId , required String userId , required String category
   ,required String userName , required String jobTitle
   }) async
   {
@@ -94,6 +98,7 @@ class UserServices {
     final url=await ref.getDownloadURL();
     CvModel cv=CvModel(id: cvId, userId: userId, cv: url, category: category, userName: userName, jobTitle: jobTitle);
     savePdf(cv: cv);
+    return url;
   }
   Future<void> savePdf({required CvModel cv}) async
   {
@@ -104,4 +109,18 @@ class UserServices {
       }
     );
   }
+  Future<String> uploadProfieImage ({required File image , required context , required String filePath}) async
+  {
+    final ref=FirebaseStorage.instance.ref().child(filePath).child('${getRandomId()}.jpg');
+    await ref.putFile(image);
+    final url=await ref.getDownloadURL();
+    UserModel user= filePath=='Company' ? Provider.of<CompanyData>(context,listen: false).user : Provider.of<UserData>(context,listen: false).user;
+    await FirebaseFirestore.instance.collection('Users').doc(user.id).update(
+        {
+          'image' : url,
+        }
+    );
+    return url;
+  }
+
 }

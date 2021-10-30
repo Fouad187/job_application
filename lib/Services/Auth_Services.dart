@@ -24,6 +24,7 @@ class Auth
           email: (value2)['email'],
           id: value.user!.uid,
           name: (value2)['name'],
+          image: (value2)['image'],
           address: (value2)['address'],
           phone: (value2)['phone'],
           type: (value2)['type'],
@@ -61,6 +62,7 @@ class Auth
         address: address,
         phone: phone,
         cv: '',
+        image: '',
       );
       await Adduserdata(userModel);
       if(type=='User')
@@ -80,5 +82,8 @@ class Auth
     return await _userCollection.doc(userModel.id).set(userModel.toJson());
   }
 
-
+  Future<void> signOut() async
+  {
+    await _auth.signOut();
+  }
 }

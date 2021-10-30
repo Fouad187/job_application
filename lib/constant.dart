@@ -1,7 +1,9 @@
+import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 Color kColor=Color(0xFF6BCEFF);
 
@@ -44,4 +46,15 @@ List<DropdownMenuItem> getitem(List<String> list)
     dropdownmenuitem.add(newitem);
   }
   return dropdownmenuitem;
+}
+
+Future<File> getImageFromGallery() async
+{
+  File _pickedimage=File('');
+  final ImagePicker _picker=ImagePicker();
+  final pickedimagefile= await _picker.pickImage(source: ImageSource.gallery);
+  if(pickedimagefile != null) {
+   _pickedimage = File(pickedimagefile.path);
+  }
+  return _pickedimage;
 }

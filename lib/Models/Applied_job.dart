@@ -4,11 +4,15 @@ class AppliedJob
   late String jobTitle;
   late String companyName;
   late String userId;
+  late String userName;
+  late String userCv;
   late String userMail;
   late String userPhone;
+  late String userImage;
   late String userAddress;
+  late String state;
 
-  AppliedJob({required this.postId ,required this.jobTitle, required this.companyName ,required this.userId ,required this.userMail ,required this.userAddress ,required this.userPhone});
+  AppliedJob({required this.postId ,required this.userName,required this.jobTitle, required this.companyName ,required this.userImage,required this.userId ,required this.userCv,required this.userMail ,required this.userAddress ,required this.userPhone , required this.state});
   AppliedJob.fromJson(Map<String,dynamic> map)
   {
     if(map==null)
@@ -24,6 +28,10 @@ class AppliedJob
         userAddress=map['userAddress'];
         userPhone=map['userPhone'];
         jobTitle=map['jobTitle'];
+        userCv=map['userCv'];
+        userImage=map['userImage'];
+        userName=map['userName'];
+        state=map['state'];
       }
   }
 
@@ -33,10 +41,14 @@ class AppliedJob
       'postId':postId,
       'companyName':companyName,
       'userId' : userId,
+      'userCv' : userCv,
       'userMail':userMail,
       'userAddress' :userAddress,
       'userPhone' : userPhone,
       'jobTitle' : jobTitle,
+      'userImage':userImage,
+      'userName':userName,
+      'state':state,
     };
   }
 

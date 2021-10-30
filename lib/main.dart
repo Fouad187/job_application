@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:job_app/Providers/company_data.dart';
 import 'package:job_app/Providers/user_data.dart';
+import 'package:job_app/Screens/Company/Applied_for_post_screen.dart';
 import 'package:job_app/Screens/Company/Company_home_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
 
           /// Company
           CompanyHomeScreen.id:(context)=>CompanyHomeScreen(),
+          AppliedForPostScreen.id:(context)=>AppliedForPostScreen(),
         },
       ),
     );

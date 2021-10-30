@@ -63,9 +63,19 @@ class _CompanyHomePageScreenState extends State<CompanyHomePageScreen> {
                 children: [
                   Row(
                     children: [
-                      CircleAvatar(),
+                      Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          image: DecorationImage(
+                            image: Provider.of<CompanyData>(context,listen: true).user.image != '' ? NetworkImage(Provider.of<CompanyData>(context,listen:true).user.image) as ImageProvider : AssetImage('assets/images/user.jpg') ,
+                            fit:BoxFit.fill
+                          ),
+                        ),
+                      ),
                       SizedBox(width: 10,),
-                      Text('${Provider.of<CompanyData>(context).user.name} Company' , style: TextStyle(fontWeight: FontWeight.w600),),
+                      Text('${Provider.of<CompanyData>(context,listen: true).user.name} Company' , style: TextStyle(fontWeight: FontWeight.w600),),
                       SizedBox(height: 5,),
                     ],
                   ),
@@ -132,7 +142,7 @@ class _CompanyHomePageScreenState extends State<CompanyHomePageScreen> {
                         jobTitle: jobTitleController.text,
                         appliedNumber: '0' ,
                         companyName: Provider.of<CompanyData>(context,listen: false).user.name,
-                        companyPhoto: '' ,
+                        companyPhoto: Provider.of<CompanyData>(context,listen: false).user.image,
                         date: DateTime.now().toString(),
                         post: postController.text,
                         isApplied: false,
@@ -175,8 +185,6 @@ class _CompanyHomePageScreenState extends State<CompanyHomePageScreen> {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                 Icon(Icons.menu , size: 30,),
-                 SizedBox(width: 10,),
                  Column(
                    crossAxisAlignment: CrossAxisAlignment.start,
                    children: [

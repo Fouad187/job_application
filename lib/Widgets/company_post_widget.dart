@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:job_app/Models/Post.dart';
+import 'package:job_app/Providers/company_data.dart';
+import 'package:job_app/Screens/Company/Applied_for_post_screen.dart';
 import 'package:job_app/constant.dart';
+import 'package:provider/provider.dart';
 
 class CompanyPostWidget extends StatelessWidget {
   late Post post;
@@ -23,7 +26,17 @@ class CompanyPostWidget extends StatelessWidget {
               Row(
 
                 children: [
-                  CircleAvatar(),
+                  Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(
+                          image: post.companyPhoto != '' ? NetworkImage(post.companyPhoto) as ImageProvider : AssetImage('assets/images/user.jpg') ,
+                          fit:BoxFit.fill
+                      ),
+                    ),
+                  ),
                   SizedBox(width: 10,),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,8 +57,13 @@ class CompanyPostWidget extends StatelessWidget {
               Text(post.post),
               SizedBox(height: 10,),
               InkWell(
-                onTap: (){
-                  
+                onTap: () async {
+                  if(post.appliedNumber !='0')
+                    {
+                      Provider.of<CompanyData>(context, listen: false).getAppliedForPost(postId: post.id).then((value) {
+                        Navigator.pushNamed(context, AppliedForPostScreen.id);
+                      });
+                    }
                 },
                 child: Container(
                   color: kColor,

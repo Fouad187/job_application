@@ -28,7 +28,17 @@ class UserPostWidget extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  CircleAvatar(),
+                  Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(
+                          image: post.companyPhoto != '' ? NetworkImage(post.companyPhoto) as ImageProvider : AssetImage('assets/images/user.jpg') ,
+                          fit:BoxFit.fill
+                      ),
+                    ),
+                  ),
                   SizedBox(width: 10,),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,7 +59,9 @@ class UserPostWidget extends StatelessWidget {
                   if(!post.isApplied)
                     {
                      final userInstance=Provider.of<UserData>(context,listen: false).user;
-                      AppliedJob job=AppliedJob(postId: post.id, jobTitle: post.jobTitle,companyName: post.companyName, userId: userInstance.id, userMail: userInstance.email, userAddress: userInstance.address, userPhone: userInstance.phone);
+                      AppliedJob job=AppliedJob(postId: post.id, jobTitle: post.jobTitle,companyName: post.companyName, userId: userInstance.id, userMail: userInstance.email, userAddress: userInstance.address, userPhone: userInstance.phone
+                      ,userCv: userInstance.cv, userImage: userInstance.image , userName: userInstance.name , state: ''
+                      );
                       Provider.of<UserData>(context,listen: false).apply(job: job, postIndex: index , appliedNumber: post.appliedNumber);
                     }
                 },

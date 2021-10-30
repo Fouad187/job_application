@@ -23,7 +23,6 @@ class _UserUploadCvScreenState extends State<UserUploadCvScreen> {
   FilePickerResult? result;
   File? file;
   String? cvId;
-  PDFDocument? doc;
   @override
   void initState() {
     // TODO: implement initState
@@ -34,14 +33,9 @@ class _UserUploadCvScreenState extends State<UserUploadCvScreen> {
   }
   getPdf() async
   {
-    String cvUrl=Provider.of<UserData>(context,listen: false).user.cv;
-    if(cvUrl!='') {
-      doc = await PDFDocument.fromURL(cvUrl);
-      setState(() {
+    Provider.of<UserData>(context,listen: false).getPdf();
+  }
 
-      });
-  }
-  }
   @override
   void dispose() {
     // TODO: implement dispose
@@ -163,13 +157,13 @@ class _UserUploadCvScreenState extends State<UserUploadCvScreen> {
             ],
           ),
         ),
-      ) : doc == null ? Center(child: CircularProgressIndicator(),) : Padding(
+      ) : Provider.of<UserData>(context).doc == null ? Center(child: CircularProgressIndicator(),) : Padding(
         padding: EdgeInsets.only(top: 10),
         child: Column(
           children: [
             Text('Your Cv Uploaded'),
             SizedBox(height: 10,),
-            Expanded(child: PDFViewer(document: doc!,)),
+            Expanded(child: PDFViewer(document: Provider.of<UserData>(context).doc!,)),
           ],
         ),
       ),
