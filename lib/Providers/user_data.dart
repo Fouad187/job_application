@@ -47,6 +47,7 @@ class UserData extends ChangeNotifier {
       userId: user.id,
       category: category,
       userName: user.name,
+      userImage: user.image,
     ).then((value) {
       print(value);
       user.cv = value;

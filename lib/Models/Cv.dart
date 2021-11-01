@@ -6,8 +6,8 @@ class CvModel
   late String category;
   late String userName;
   late String jobTitle;
-
-  CvModel({required this.id , required this.userId , required this.cv , required this.category , required this.userName , required this.jobTitle});
+  late String userImage;
+  CvModel({required this.id , required this.userId , required this.cv ,required this.userImage, required this.category , required this.userName , required this.jobTitle});
 
   CvModel.fromJson(Map<String , dynamic> map)
   {
@@ -23,6 +23,7 @@ class CvModel
       cv=map['cv'];
       userName=map['userName'];
       category=map['category'];
+      userImage=map['userImage'];
     }
   }
   toJson()
@@ -34,6 +35,7 @@ class CvModel
       'cv':cv,
       'userName':userName,
       'category' : category,
+      'userImage' : userImage,
     };
   }
 

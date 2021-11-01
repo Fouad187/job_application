@@ -3,6 +3,7 @@ import 'package:job_app/Models/Cv.dart';
 import 'package:job_app/Providers/company_data.dart';
 import 'package:job_app/Services/Company_Services.dart';
 import 'package:job_app/Services/User_Services.dart';
+import 'package:job_app/Widgets/show_cv_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../../../constant.dart';
@@ -69,7 +70,7 @@ class _CompanyCvsScreenState extends State<CompanyCvsScreen> {
             Divider(),
             Provider.of<CompanyData>(context).Cvs.length > 0 ?
             Column(
-              children: Provider.of<CompanyData>(context).Cvs.map((e) => Text('ss')).toList(),
+              children: Provider.of<CompanyData>(context).Cvs.map((cv) => ShowCvWidget(cvModel: cv)).toList(),
             ) : Container(),
           ],
         ),

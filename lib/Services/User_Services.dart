@@ -90,13 +90,21 @@ class UserServices {
         });
   }
   Future<String> uploadPdf({required File file , required String cvName,required String cvId , required String userId , required String category
-  ,required String userName , required String jobTitle
+  ,required String userName , required String jobTitle ,required String userImage
   }) async
   {
     final ref=FirebaseStorage.instance.ref().child('Cvs').child(cvName);
     await ref.putFile(file);
     final url=await ref.getDownloadURL();
-    CvModel cv=CvModel(id: cvId, userId: userId, cv: url, category: category, userName: userName, jobTitle: jobTitle);
+    CvModel cv=CvModel(
+        id: cvId,
+        userId: userId,
+        cv: url,
+        category: category,
+        userName: userName,
+        jobTitle: jobTitle,
+        userImage: userImage,
+    );
     savePdf(cv: cv);
     return url;
   }
