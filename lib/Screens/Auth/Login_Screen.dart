@@ -6,7 +6,7 @@ import 'package:job_app/Widgets/auth_button.dart';
 import 'package:job_app/Widgets/text_field.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter_svg/flutter_svg.dart';
 import 'Registration_Screen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -26,6 +26,7 @@ class LoginScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
+
               Container(
                 width: double.infinity,
                 height: 250,
@@ -33,6 +34,7 @@ class LoginScreen extends StatelessWidget {
                   color: Color(0xFF6BCEFF),
                   borderRadius: BorderRadius.only(bottomLeft: Radius.circular(120)),
                 ),
+                child: Center(child: SvgPicture.asset('assets/images/login.svg' , width: 150, height: 150,)),
               ),
               SizedBox(height: 40,),
               Text('Welcome Back!' , style: TextStyle(fontSize: 22 , fontWeight: FontWeight.w700),),

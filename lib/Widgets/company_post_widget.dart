@@ -47,9 +47,11 @@ class CompanyPostWidget extends StatelessWidget {
                     ],
                   ),
                   Spacer(),
-                  InkWell(
+                 /* InkWell(
                       onTap: (){},
                       child: Icon(Icons.delete , color: Colors.grey,)),
+
+                  */
                 ],
               ),
               Divider(),

@@ -7,6 +7,7 @@ import 'package:job_app/Providers/user_data.dart';
 import 'package:job_app/Screens/Auth/Login_Screen.dart';
 import 'package:job_app/Screens/User/Taps/UserUploadCvScreen.dart';
 import 'package:job_app/Screens/User/Taps/user_all_job_screen.dart';
+import 'package:job_app/Screens/User/user_chat_list.dart';
 import 'package:job_app/constant.dart';
 import 'package:provider/provider.dart';
 
@@ -78,7 +79,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                 title: Text('Chats', style: TextStyle(color: Colors.black),),
                 leading: Icon(Icons.message, color: Colors.blueAccent),
                 onTap: (){
-
+                  Navigator.pushNamed(context, UserChatList.id);
                 },
               ),
               ListTile(

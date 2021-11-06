@@ -7,6 +7,7 @@ import 'package:job_app/Models/Applied_job.dart';
 import 'package:job_app/Models/Post.dart';
 import 'package:job_app/Models/User.dart';
 import 'package:job_app/Services/Auth_Services.dart';
+import 'package:job_app/Services/Chat_Services.dart';
 import 'package:job_app/Services/User_Services.dart';
 import 'package:job_app/constant.dart';
 
@@ -15,6 +16,8 @@ class UserData extends ChangeNotifier {
   UserServices userServices = UserServices();
   List<Post> posts = [];
   List<AppliedJob> applied = [];
+  List<UserModel> chatList=[];
+
   PDFDocument? doc;
 
   setUser(UserModel userModel) {
@@ -79,5 +82,13 @@ class UserData extends ChangeNotifier {
   {
     Auth auth=Auth();
     auth.signOut();
+  }
+
+  Future<void> getChatList() async
+  {
+    ChatServices.getChatList(myId: user.id).then((value) {
+      chatList=value;
+      notifyListeners();
+    });
   }
 }

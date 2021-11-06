@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:job_app/Models/Applied_job.dart';
 import 'package:job_app/Models/Cv.dart';
 import 'package:job_app/Models/Post.dart';
+import 'package:job_app/constant.dart';
 
 class CompanyServices
 {
@@ -32,6 +33,7 @@ class CompanyServices
       for(int i = 0; i < value.docs.length; i++)
         {
           appliedPosts.add(AppliedJob.fromJson(value.docs[i].data())),
+          appliedPosts[i].docId=value.docs[i].id,
         }
     });
     return appliedPosts;
@@ -47,5 +49,20 @@ class CompanyServices
       }
     });
     return Cvs;
+  }
+  Future<void> updateJobStatus({required String id , required String state}) async
+  {
+    await FirebaseFirestore.instance.collection('Applied').doc(id).update(
+      {
+        'state' : state,
+      }
+    );
+  }
+  Future<void> deletePost({required String id}) async 
+  {
+    await FirebaseFirestore.instance.collection('Posts').doc(id).delete().then((value)
+    {
+
+    });
   }
 }

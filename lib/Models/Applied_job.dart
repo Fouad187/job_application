@@ -11,6 +11,7 @@ class AppliedJob
   late String userImage;
   late String userAddress;
   late String state;
+  String? docId;
 
   AppliedJob({required this.postId ,required this.userName,required this.jobTitle, required this.companyName ,required this.userImage,required this.userId ,required this.userCv,required this.userMail ,required this.userAddress ,required this.userPhone , required this.state});
   AppliedJob.fromJson(Map<String,dynamic> map)

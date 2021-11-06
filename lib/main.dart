@@ -4,6 +4,8 @@ import 'package:job_app/Providers/company_data.dart';
 import 'package:job_app/Providers/user_data.dart';
 import 'package:job_app/Screens/Company/Applied_for_post_screen.dart';
 import 'package:job_app/Screens/Company/Company_home_screen.dart';
+import 'package:job_app/Screens/Company/chat_screen.dart';
+import 'package:job_app/Screens/User/user_chat_list.dart';
 import 'package:provider/provider.dart';
 
 import 'Providers/Modal_hud.dart';
@@ -36,7 +38,7 @@ class MyApp extends StatelessWidget {
 
           /// User
           UserHomeScreen.id:(context)=>UserHomeScreen(),
-
+          UserChatList.id : (context) =>UserChatList(),
           /// Company
           CompanyHomeScreen.id:(context)=>CompanyHomeScreen(),
           AppliedForPostScreen.id:(context)=>AppliedForPostScreen(),

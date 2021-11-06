@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:job_app/Providers/company_data.dart';
-import 'package:job_app/Services/Chat_Services.dart';
+import 'package:job_app/Providers/user_data.dart';
 import 'package:job_app/Widgets/chatListItem.dart';
 import 'package:provider/provider.dart';
 
-import '../../../constant.dart';
+import '../../constant.dart';
+class UserChatList extends StatefulWidget {
+  static String id='UserChatListId';
 
-class CompanyChatScreen extends StatefulWidget {
   @override
-  State<CompanyChatScreen> createState() => _CompanyChatScreenState();
+  State<UserChatList> createState() => _UserChatListState();
 }
 
-class _CompanyChatScreenState extends State<CompanyChatScreen> {
-
+class _UserChatListState extends State<UserChatList> {
   @override
   void initState() {
     // TODO: implement initState
@@ -22,7 +21,7 @@ class _CompanyChatScreenState extends State<CompanyChatScreen> {
     });
   }
   getChats(){
-    final instance=Provider.of<CompanyData>(context,listen: false);
+    final instance=Provider.of<UserData>(context,listen: false);
     instance.getChatList();
   }
   @override
@@ -35,10 +34,11 @@ class _CompanyChatScreenState extends State<CompanyChatScreen> {
       ),
       body: ListView.builder(
         itemBuilder: (context, index) {
-          return ChatListItem(user:Provider.of<CompanyData>(context).chatList[index] , myId: Provider.of<CompanyData>(context).user.id,);
+          return ChatListItem(user:Provider.of<UserData>(context).chatList[index] , myId: Provider.of<UserData>(context).user.id,);
         },
-        itemCount: Provider.of<CompanyData>(context).chatList.length,
+        itemCount: Provider.of<UserData>(context).chatList.length,
       ),
     );
+
   }
 }

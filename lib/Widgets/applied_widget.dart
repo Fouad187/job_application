@@ -2,8 +2,15 @@ import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:job_app/Models/Applied_job.dart';
+import 'package:job_app/Providers/company_data.dart';
+import 'package:job_app/Providers/user_data.dart';
 import 'package:job_app/Screens/Company/View_Cv_Screen.dart';
+import 'package:job_app/Screens/Company/chat_screen.dart';
+import 'package:job_app/Services/Chat_Services.dart';
+import 'package:job_app/Services/Company_Services.dart';
 import 'package:job_app/constant.dart';
+import 'package:provider/provider.dart';
+import 'package:provider/provider.dart';
 
 class AppliedWidget extends StatefulWidget {
   AppliedJob userApply;
@@ -85,9 +92,23 @@ class _AppliedWidgetState extends State<AppliedWidget> {
                 children: [
                   Expanded(
                     child: MaterialButton(
-                      onPressed: (){},
+                      onPressed: (){
+                        if(widget.userApply.state == 'Rejected')
+                        {
+
+                        }
+                        else
+                        {
+                          CompanyServices companyServices=CompanyServices();
+                          companyServices.updateJobStatus(id: widget.userApply.docId!, state: 'Rejected').then((value) {
+                            setState(() {
+                              widget.userApply.state='Rejected';
+                            });
+                          });
+                        }
+                      },
                       child: Text('Rejected',style: TextStyle(color: Colors.white),),
-                      color: Colors.red,
+                      color: widget.userApply.state !='Rejected' ? Colors.red : Colors.redAccent.shade100,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)
                       ),
@@ -97,14 +118,34 @@ class _AppliedWidgetState extends State<AppliedWidget> {
                   Expanded(
                     child: MaterialButton(
                       onPressed: (){
-                        setState(() {
-                          isConsidiration=true;
-                        });
+                        if(widget.userApply.state == 'In Consideration')
+                          {
+                            String myId=Provider.of<CompanyData>(context,listen: false).user.id;
+                            String chatId=getChatID( widget.userApply.userId, myId);
+                            ChatServices.createChatBetween(userId: widget.userApply.userId, myId: myId , chatId: chatId).then((value) {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => ChatScreen(
+                                name: widget.userApply.userName,
+                                photo: widget.userApply.userImage,
+                                userId:widget.userApply.userId,
+                                myId: myId,
+                                chatId : chatId,
+                              ),));
+                            });
+                          }
+                        else
+                          {
+                            CompanyServices companyServices=CompanyServices();
+                            companyServices.updateJobStatus(id: widget.userApply.docId!, state: 'In Consideration').then((value) {
+                              setState(() {
+                                widget.userApply.state='In Consideration';
+                              });
+                            });
+                          }
                       },
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)
                       ),
-                      child: isConsidiration == false ? Text('In Considiration',style: TextStyle(color: Colors.white),) :
+                      child: widget.userApply.state != 'In Consideration' ? Text('In Consideration',style: TextStyle(color: Colors.white),) :
                       Text('Send Message',style: TextStyle(color: Colors.white),),
                       color: Colors.green,
                     ),

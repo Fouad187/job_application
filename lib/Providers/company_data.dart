@@ -5,6 +5,7 @@ import 'package:job_app/Models/Applied_job.dart';
 import 'package:job_app/Models/Cv.dart';
 import 'package:job_app/Models/Post.dart';
 import 'package:job_app/Models/User.dart';
+import 'package:job_app/Services/Chat_Services.dart';
 import 'package:job_app/Services/Company_Services.dart';
 import 'package:job_app/Services/User_Services.dart';
 import 'package:job_app/constant.dart';
@@ -16,7 +17,7 @@ class CompanyData extends ChangeNotifier
   List<Post> companyPosts=[];
   List<AppliedJob> appliedInPost=[];
   List<CvModel> Cvs=[];
-
+  List<UserModel> chatList=[];
   setUser(UserModel userModel)
   {
     this.user=userModel;
@@ -59,6 +60,14 @@ class CompanyData extends ChangeNotifier
         user.image=value;
         notifyListeners();
       });
+    });
+  }
+
+  Future<void> getChatList() async
+  {
+    ChatServices.getChatList(myId: user.id).then((value) {
+      chatList=value;
+      notifyListeners();
     });
   }
 }

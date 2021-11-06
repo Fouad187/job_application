@@ -17,7 +17,9 @@ String getRandomId()
   return randomName;
 }
 
-
+String getChatID(String uid, String pid) {
+  return uid.hashCode <= pid.hashCode ? uid + '_' + pid : pid + '_' + uid;
+}
 List<String> categories=
 [
   'IT/Software Development',
