@@ -24,7 +24,6 @@ class UserPostWidget extends StatelessWidget {
           padding: EdgeInsets.all(10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-
             children: [
               Row(
                 children: [

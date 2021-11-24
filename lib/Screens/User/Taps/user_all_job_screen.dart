@@ -45,8 +45,10 @@ class _UserAllJobsScreenState extends State<UserAllJobsScreen> {
                 await getData();
               },
               child: ListView.builder(
-                itemBuilder: (context, index) =>UserPostWidget(post:  Provider.of<UserData>(context).posts[index], index: index,), itemCount: Provider.of<UserData>(context).posts.length, physics: BouncingScrollPhysics(),),
-            )),          ],
+                itemBuilder: (context, index) =>UserPostWidget(post:  Provider.of<UserData>(context).posts[index], index: index,),
+                itemCount: Provider.of<UserData>(context).posts.length,
+                physics: BouncingScrollPhysics(),),
+            )),],
         ),
       ),
     );

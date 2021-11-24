@@ -27,7 +27,6 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
   @override
   Widget build(BuildContext context) {
     UserModel userInstance=Provider.of<UserData>(context,listen: true).user;
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Jobiny'),
@@ -63,17 +62,10 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                     ),
                     SizedBox(height: 10,),
                     Text(userInstance.name , style: TextStyle(fontSize: 18 , color: Colors.white),),
-                    Text('Flutter Developer', style: TextStyle(color: Colors.white),),
+                    Text(userInstance.email, style: TextStyle(color: Colors.white),),
                   ],
 
                 ),
-              ),
-              ListTile(
-                title: Text('Profile', style: TextStyle(color: Colors.black),),
-                leading: Icon(Icons.person, color: Colors.blueAccent),
-                onTap: (){
-
-                },
               ),
               ListTile(
                 title: Text('Chats', style: TextStyle(color: Colors.black),),

@@ -25,15 +25,13 @@ class UserServices {
       bool isMatch=false;
         await getAppliedPosts(userId: userId).then((applied) {
           Provider.of<UserData>(context,listen: false).applied=applied;
-          print('${applied.length} el applied');
-          print('${value.docs.length} el kol');
+
           for(int i=0 ; i<value.docs.length; i++)
             {
               for(int j = 0; j < applied.length ; j++)
               {
                 if(applied[j].postId==Post.fromJson(value.docs[i].data()).id)
                   {
-                    print('xx');
                     post=Post.fromJson(value.docs[i].data());
                     post.isApplied=true;
                     isMatch=true;

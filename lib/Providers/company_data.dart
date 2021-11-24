@@ -5,6 +5,7 @@ import 'package:job_app/Models/Applied_job.dart';
 import 'package:job_app/Models/Cv.dart';
 import 'package:job_app/Models/Post.dart';
 import 'package:job_app/Models/User.dart';
+import 'package:job_app/Services/Auth_Services.dart';
 import 'package:job_app/Services/Chat_Services.dart';
 import 'package:job_app/Services/Company_Services.dart';
 import 'package:job_app/Services/User_Services.dart';
@@ -70,4 +71,11 @@ class CompanyData extends ChangeNotifier
       notifyListeners();
     });
   }
+
+  Future<void> logOut() async
+  {
+    Auth auth=Auth();
+    auth.signOut();
+  }
+
 }

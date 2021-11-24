@@ -71,13 +71,6 @@ class _CompanyHomeScreenState extends State<CompanyHomeScreen> {
                 ),
               ),
               ListTile(
-                title: Text('Profile', style: TextStyle(color: Colors.black),),
-                leading: Icon(Icons.person, color: Colors.blueAccent),
-                onTap: (){
-
-                },
-              ),
-              ListTile(
                 title: Text('Chats', style: TextStyle(color: Colors.black),),
                 leading: Icon(Icons.message, color: Colors.blueAccent),
                 onTap: (){
@@ -88,7 +81,7 @@ class _CompanyHomeScreenState extends State<CompanyHomeScreen> {
                 title: Text('Log Out', style: TextStyle(color: Colors.black),),
                 leading: Icon(Icons.logout, color: Colors.blueAccent),
                 onTap: (){
-                  Provider.of<UserData>(context,listen: false).logOut().then((value) {
+                  Provider.of<CompanyData>(context,listen: false).logOut().then((value) {
                     Navigator.pushNamedAndRemoveUntil(context, LoginScreen.id, (route) => false);
                   });
                 },

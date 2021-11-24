@@ -39,6 +39,7 @@ class MyApp extends StatelessWidget {
           /// User
           UserHomeScreen.id:(context)=>UserHomeScreen(),
           UserChatList.id : (context) =>UserChatList(),
+
           /// Company
           CompanyHomeScreen.id:(context)=>CompanyHomeScreen(),
           AppliedForPostScreen.id:(context)=>AppliedForPostScreen(),

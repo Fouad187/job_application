@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:job_app/Models/Post.dart';
 import 'package:job_app/Models/User.dart';
 import 'package:job_app/Providers/company_data.dart';
+import 'package:job_app/Screens/Auth/Login_Screen.dart';
 import 'package:job_app/Services/Company_Services.dart';
 import 'package:job_app/Widgets/auth_button.dart';
 import 'package:job_app/Widgets/company_post_widget.dart';
@@ -184,6 +185,7 @@ class _CompanyHomePageScreenState extends State<CompanyHomePageScreen> {
             children: [
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                  Column(
                    crossAxisAlignment: CrossAxisAlignment.start,
@@ -192,7 +194,15 @@ class _CompanyHomePageScreenState extends State<CompanyHomePageScreen> {
                      SizedBox(height: 5,),
                      Text('Lets Create a Post' , style: TextStyle(color: Colors.grey),),
                    ],
-                 )
+                 ),
+                  InkWell(
+                    onTap: (){
+                      Provider.of<CompanyData>(context,listen: false).logOut().then((value) {
+                        Navigator.pushNamedAndRemoveUntil(context, LoginScreen.id, (route) => false);
+                      });
+                    },
+
+                      child: Icon(Icons.logout)),
                 ],
               ),
               SizedBox(height: 20,),
@@ -203,7 +213,10 @@ class _CompanyHomePageScreenState extends State<CompanyHomePageScreen> {
                   await getData();
                 },
                 child: ListView.builder(
-                  itemBuilder: (context, index) =>CompanyPostWidget(post:  Provider.of<CompanyData>(context).companyPosts[index],), itemCount: Provider.of<CompanyData>(context).companyPosts.length, physics: BouncingScrollPhysics(),),
+                  itemBuilder: (context, index) =>CompanyPostWidget(post:  Provider.of<CompanyData>(context).companyPosts[index],),
+                  itemCount: Provider.of<CompanyData>(context).companyPosts.length,
+                  physics: BouncingScrollPhysics(),
+                ),
               )),
             ],
           ),
