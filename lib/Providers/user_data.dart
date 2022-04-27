@@ -23,6 +23,13 @@ class UserData extends ChangeNotifier {
   setUser(UserModel userModel) {
     this.user = userModel;
   }
+  updateUserDate({required String phone , required String name , required String address})
+  {
+    user.phone=phone;
+    user.name=name;
+    user.address=address;
+    notifyListeners();
+  }
 
   getPosts({required userId, required context}) {
     userServices.getAllPosts(userId: userId, context: context).then((value) {

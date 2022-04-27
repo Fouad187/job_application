@@ -23,10 +23,16 @@ class CompanyData extends ChangeNotifier
   {
     this.user=userModel;
   }
-
-  getCompanyPosts({required String companyName})
+  updateUserDate({required String phone , required String name , required String address})
   {
-    companyServices.getCompanyPosts(companyName: companyName).then((value) {
+    user.phone=phone;
+    user.name=name;
+    user.address=address;
+    notifyListeners();
+  }
+  getCompanyPosts({required String companyId})
+  {
+    companyServices.getCompanyPosts(companyId: companyId).then((value) {
       companyPosts=value;
       notifyListeners();
     });

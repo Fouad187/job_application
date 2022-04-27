@@ -35,7 +35,7 @@ class _CompanyHomePageScreenState extends State<CompanyHomePageScreen> {
   getData() async
   {
      userInstance=Provider.of<CompanyData>(context,listen: false).user;
-    await Provider.of<CompanyData>(context,listen: false).getCompanyPosts(companyName: userInstance.name);
+    await Provider.of<CompanyData>(context,listen: false).getCompanyPosts(companyId: userInstance.id);
   }
   @override
   void dispose() {
@@ -143,6 +143,7 @@ class _CompanyHomePageScreenState extends State<CompanyHomePageScreen> {
                         appliedNumber: '0' ,
                         companyName: Provider.of<CompanyData>(context,listen: false).user.name,
                         companyPhoto: Provider.of<CompanyData>(context,listen: false).user.image,
+                        companyId: Provider.of<CompanyData>(context,listen: false).user.id,
                         date: DateTime.now().toString(),
                         post: postController.text,
                         isApplied: false,
@@ -202,7 +203,7 @@ class _CompanyHomePageScreenState extends State<CompanyHomePageScreen> {
                       });
                     },
 
-                      child: Icon(Icons.logout)),
+                      child: Icon(Icons.logout , color: kColor,)),
                 ],
               ),
               SizedBox(height: 20,),

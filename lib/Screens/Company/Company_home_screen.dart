@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 
 import '../../constant.dart';
 import '../User/user_chat_list.dart';
+import 'Comapny_Profile.dart';
 
 class CompanyHomeScreen extends StatefulWidget {
   static String id='CompanyHomeScreenID';
@@ -86,7 +87,7 @@ class _CompanyHomeScreenState extends State<CompanyHomeScreen> {
                 title: Text('Profile', style: TextStyle(color: Colors.black),),
                 leading: Icon(Icons.person, color: kColor),
                 onTap: (){
-
+                  Navigator.pushNamed(context, CompanyProfile.id);
                 },
               ),
               ListTile(

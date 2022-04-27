@@ -8,6 +8,7 @@ import 'package:job_app/Screens/Auth/Login_Screen.dart';
 import 'package:job_app/Screens/User/Taps/UserUploadCvScreen.dart';
 import 'package:job_app/Screens/User/Taps/user_all_job_screen.dart';
 import 'package:job_app/Screens/User/user_chat_list.dart';
+import 'package:job_app/Screens/User/user_profile.dart';
 import 'package:job_app/constant.dart';
 import 'package:provider/provider.dart';
 
@@ -66,6 +67,13 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                   ],
 
                 ),
+              ),
+              ListTile(
+                title: Text('Profile', style: TextStyle(color: Colors.black),),
+                leading: Icon(Icons.person, color: kColor),
+                onTap: (){
+                  Navigator.pushNamed(context, UserProfile.id);
+                },
               ),
               ListTile(
                 title: Text('Chats', style: TextStyle(color: Colors.black),),

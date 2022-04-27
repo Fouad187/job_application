@@ -13,10 +13,10 @@ class CompanyServices
   {
     await FirebaseFirestore.instance.collection('Posts').doc(post.id).set(post.toJson());
   }
- Future<List<Post>> getCompanyPosts({required String companyName}) async
+ Future<List<Post>> getCompanyPosts({required String companyId}) async
  {
    List<Post> posts=[];
-   await FirebaseFirestore.instance.collection('Posts').where('companyName' , isEqualTo: companyName).get().then((value) => {
+   await FirebaseFirestore.instance.collection('Posts').where('companyId' , isEqualTo: companyId).get().then((value) => {
        for(int i=0 ; i<value.docs.length ; i++)
          {
            posts.add(Post.fromJson(value.docs[i].data())),

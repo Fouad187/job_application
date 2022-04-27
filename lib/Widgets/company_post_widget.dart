@@ -24,7 +24,6 @@ class CompanyPostWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
-
                 children: [
                   Container(
                     height: 40,

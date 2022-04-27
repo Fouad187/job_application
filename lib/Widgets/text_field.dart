@@ -8,11 +8,13 @@ class MyTextField extends StatelessWidget {
     required this.validate,
     this.keyType = TextInputType.text,
     this.security = false,
+    this.disable=false,
   });
   Icon picon;
   String label;
   TextInputType keyType;
   bool security = false;
+  bool disable;
   TextEditingController controller;
   Function validate;
   @override
@@ -21,6 +23,7 @@ class MyTextField extends StatelessWidget {
       controller: controller,
       obscureText: security,
       keyboardType: keyType,
+      readOnly: disable,
       decoration: InputDecoration(
         labelText: label,
         fillColor: Colors.white,
