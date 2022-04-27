@@ -50,7 +50,6 @@ class _CompanyHomePageScreenState extends State<CompanyHomePageScreen> {
       key: scaffoldKey,
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-
           scaffoldKey.currentState?.showBottomSheet((context) => Card(
             child: Container(
               padding: EdgeInsets.all(10),
@@ -166,7 +165,7 @@ class _CompanyHomePageScreenState extends State<CompanyHomePageScreen> {
               child: Text('Post',
                   style: TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold , fontSize: 18)),
-              color: Colors.blue,
+              color: kColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30.0),
               ),
@@ -176,6 +175,7 @@ class _CompanyHomePageScreenState extends State<CompanyHomePageScreen> {
           ));
         },
         child: Icon(Icons.post_add),
+        backgroundColor: kColor,
       ),
       body: SafeArea(
         child: Padding(

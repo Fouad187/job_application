@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:job_app/Providers/company_data.dart';
 import 'package:job_app/Providers/user_data.dart';
 import 'package:job_app/Screens/Company/Applied_for_post_screen.dart';
+import 'package:job_app/Screens/Company/Comapny_Profile.dart';
 import 'package:job_app/Screens/Company/Company_home_screen.dart';
 import 'package:job_app/Screens/Company/chat_screen.dart';
 import 'package:job_app/Screens/User/user_chat_list.dart';
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
           /// Company
           CompanyHomeScreen.id:(context)=>CompanyHomeScreen(),
           AppliedForPostScreen.id:(context)=>AppliedForPostScreen(),
+          CompanyProfile.id:(context)=>CompanyProfile(),
         },
       ),
     );

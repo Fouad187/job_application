@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-Color kColor=Color(0xFF6BCEFF);
+Color kColor=Colors.purple;
 
 String getRandomId()
 {

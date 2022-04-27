@@ -66,7 +66,7 @@ class UserPostWidget extends StatelessWidget {
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    color: post.isApplied ?Colors.blueGrey :Colors.blue,
+                    color: post.isApplied ?Colors.blueGrey : kColor,
                     borderRadius: BorderRadius.circular(15),
                   ),
                   padding: EdgeInsets.all(5),

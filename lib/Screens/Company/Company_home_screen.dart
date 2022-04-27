@@ -9,6 +9,9 @@ import 'package:job_app/Screens/Company/Taps/company_cvs_screen.dart';
 import 'package:job_app/Screens/Company/Taps/company_home_page_screen.dart';
 import 'package:provider/provider.dart';
 
+import '../../constant.dart';
+import '../User/user_chat_list.dart';
+
 class CompanyHomeScreen extends StatefulWidget {
   static String id='CompanyHomeScreenID';
 
@@ -42,7 +45,7 @@ class _CompanyHomeScreenState extends State<CompanyHomeScreen> {
             children: [
               DrawerHeader(
                 decoration: BoxDecoration(
-                  color: Colors.blueAccent,
+                  color: kColor,
                 ),
                 child: Column(
                   children: [
@@ -70,16 +73,25 @@ class _CompanyHomeScreenState extends State<CompanyHomeScreen> {
 
                 ),
               ),
-              ListTile(
+              /*ListTile(
                 title: Text('Chats', style: TextStyle(color: Colors.black),),
-                leading: Icon(Icons.message, color: Colors.blueAccent),
+                leading: Icon(Icons.message, color: kColor),
+                onTap: (){
+                  Navigator.pushNamed(context, UserChatList.id);
+
+                },
+              ),
+               */
+              ListTile(
+                title: Text('Profile', style: TextStyle(color: Colors.black),),
+                leading: Icon(Icons.person, color: kColor),
                 onTap: (){
 
                 },
               ),
               ListTile(
                 title: Text('Log Out', style: TextStyle(color: Colors.black),),
-                leading: Icon(Icons.logout, color: Colors.blueAccent),
+                leading: Icon(Icons.logout, color: kColor),
                 onTap: (){
                   Provider.of<CompanyData>(context,listen: false).logOut().then((value) {
                     Navigator.pushNamedAndRemoveUntil(context, LoginScreen.id, (route) => false);
@@ -92,7 +104,7 @@ class _CompanyHomeScreenState extends State<CompanyHomeScreen> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: Color(0xFF6BCEFF),
+        selectedItemColor: kColor,
         currentIndex: selectedIndex,
         onTap: (index){
           setState(() {

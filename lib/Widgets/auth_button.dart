@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import '../constant.dart';
 class AuthButton extends StatelessWidget {
 
   AuthButton({
@@ -18,7 +20,7 @@ class AuthButton extends StatelessWidget {
       child: Text(text,
           style: TextStyle(
               color: Colors.white, fontWeight: FontWeight.bold , fontSize: 18)),
-      color: Color(0xFF6BCEFF),
+      color: kColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(30.0),
       ),

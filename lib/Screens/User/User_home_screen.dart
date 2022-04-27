@@ -38,7 +38,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
             children: [
               DrawerHeader(
                 decoration: BoxDecoration(
-                  color: Colors.blueAccent,
+                  color: kColor,
                 ),
                 child: Column(
                   children: [
@@ -69,14 +69,14 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
               ),
               ListTile(
                 title: Text('Chats', style: TextStyle(color: Colors.black),),
-                leading: Icon(Icons.message, color: Colors.blueAccent),
+                leading: Icon(Icons.message, color: kColor),
                 onTap: (){
                   Navigator.pushNamed(context, UserChatList.id);
                 },
               ),
               ListTile(
                 title: Text('Log Out', style: TextStyle(color: Colors.black),),
-                leading: Icon(Icons.logout, color: Colors.blueAccent),
+                leading: Icon(Icons.logout, color: kColor),
                 onTap: (){
                   Provider.of<UserData>(context,listen: false).logOut().then((value) {
                     Navigator.pushNamedAndRemoveUntil(context, LoginScreen.id, (route) => false);
@@ -90,7 +90,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
 
-        selectedItemColor: Color(0xFF6BCEFF),
+        selectedItemColor: kColor,
         currentIndex: selectedIndex,
         onTap: (index){
           setState(() {

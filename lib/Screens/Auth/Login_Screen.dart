@@ -7,6 +7,7 @@ import 'package:job_app/Widgets/text_field.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../../constant.dart';
 import 'Registration_Screen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -26,12 +27,11 @@ class LoginScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-
               Container(
                 width: double.infinity,
                 height: 250,
                 decoration: BoxDecoration(
-                  color: Color(0xFF6BCEFF),
+                  color: kColor,
                   borderRadius: BorderRadius.only(bottomLeft: Radius.circular(120)),
                 ),
                 child: Center(child: SvgPicture.asset('assets/images/login.svg' , width: 150, height: 150,)),
@@ -45,9 +45,9 @@ class LoginScreen extends StatelessWidget {
                       key: _globalKey,
                       child: Column(
                         children: [
-                          MyTextField(label: 'Email', picon: Icon(Icons.person , color: Color(0xFF6BCEFF), size: 30,), controller: emailController, validate: (value){}),
+                          MyTextField(label: 'Email', picon: Icon(Icons.person , color: kColor, size: 30,), controller: emailController, validate: (value){}),
                           SizedBox(height: 20,),
-                          MyTextField(label: 'Password', picon: Icon(Icons.lock , color: Color(0xFF6BCEFF), size: 30,), security: true , controller: passwordController, validate: (value){}),
+                          MyTextField(label: 'Password', picon: Icon(Icons.lock , color: kColor , size: 30,), security: true , controller: passwordController, validate: (value){}),
                           SizedBox(height: 40,),
                           Center(child: AuthButton(
                               tap: () async {
@@ -76,7 +76,7 @@ class LoginScreen extends StatelessWidget {
                                   onTap: (){
                                     Navigator.pushNamed(context, RegistrationScreen.id);
                                   },
-                                  child: Text('Sing Up' , style: TextStyle(fontWeight: FontWeight.w500 , color: Colors.blueAccent),)),
+                                  child: Text('Sing Up' , style: TextStyle(fontWeight: FontWeight.w500 , color: kColor),)),
                             ],
                           ),
                         ],

@@ -5,6 +5,7 @@ import 'package:job_app/Screens/User/User_home_screen.dart';
 import 'package:job_app/Services/Auth_Services.dart';
 import 'package:job_app/Widgets/auth_button.dart';
 import 'package:job_app/Widgets/text_field.dart';
+import 'package:job_app/constant.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:provider/provider.dart';
 
@@ -37,10 +38,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Create Account' , style: TextStyle(color: Color(0xFF6BCEFF),),),
+        title: Text('Create Account' , style: TextStyle(color: kColor,),),
         centerTitle: true,
         iconTheme: IconThemeData(
-          color: Color(0xFF6BCEFF),
+          color: kColor,
         ),
         elevation: 0,
         backgroundColor: Colors.white,
@@ -55,17 +56,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               key: _globalKey,
               child: Column(
                 children: [
-                  MyTextField(label: 'Name', picon: Icon(Icons.person , color: Color(0xFF6BCEFF), size: 30,), controller: nameController, validate: (value){}),
+                  MyTextField(label: 'Name', picon: Icon(Icons.person , color: kColor, size: 30,), controller: nameController, validate: (value){}),
                   SizedBox(height: 20,),
-                  MyTextField(label: 'Email', picon: Icon(Icons.email , color: Color(0xFF6BCEFF), size: 30,), controller: emailController, validate: (value){}),
+                  MyTextField(label: 'Email', picon: Icon(Icons.email , color: kColor, size: 30,), controller: emailController, validate: (value){}),
                   SizedBox(height: 20,),
-                  MyTextField(label: 'Password', picon: Icon(Icons.lock , color: Color(0xFF6BCEFF), size: 30,),security: true, controller: passwordController, validate: (value){}),
+                  MyTextField(label: 'Password', picon: Icon(Icons.lock , color: kColor, size: 30,),security: true, controller: passwordController, validate: (value){}),
                   SizedBox(height: 20,),
-                  MyTextField(label: 'Confirm Password', picon: Icon(Icons.lock , color: Color(0xFF6BCEFF), size: 30,),security: true, controller: confirmController, validate: (value){}),
+                  MyTextField(label: 'Confirm Password', picon: Icon(Icons.lock , color:kColor, size: 30,),security: true, controller: confirmController, validate: (value){}),
                   SizedBox(height: 20,),
-                  MyTextField(label: 'Phone Number', picon: Icon(Icons.phone , color: Color(0xFF6BCEFF), size: 30,), controller: phoneController, validate: (value){}),
+                  MyTextField(label: 'Phone Number', picon: Icon(Icons.phone , color:kColor, size: 30,), controller: phoneController, validate: (value){}),
                   SizedBox(height: 20,),
-                  MyTextField(label: 'Address (Country/City)', picon: Icon(Icons.home , color: Color(0xFF6BCEFF), size: 30,), controller: addressController, validate: (value){}),
+                  MyTextField(label: 'Address (Country/City)', picon: Icon(Icons.home , color: kColor, size: 30,), controller: addressController, validate: (value){}),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -79,7 +80,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           });
                         },
 
-                        activeColor:  Color(0xFF6BCEFF),
+                        activeColor:  kColor,
                       ),
                       Text('Job Seeker'),
                     ],),
@@ -93,7 +94,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                               selectedType=value!;
                             });
                           },
-                          activeColor:  Color(0xFF6BCEFF),
+                          activeColor:  kColor,
                         ),
                         Text('Job Provider'),
                       ],
@@ -142,7 +143,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           onTap: (){
                             Navigator.pop(context);
                           },
-                          child: Text('Login here' , style: TextStyle(fontWeight: FontWeight.w500 , color: Colors.blueAccent),)),
+                          child: Text('Login here' , style: TextStyle(fontWeight: FontWeight.w500 , color: kColor),)),
                     ],
                   ),
                 ],
