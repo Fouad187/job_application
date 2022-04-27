@@ -214,7 +214,7 @@ class _CompanyHomePageScreenState extends State<CompanyHomePageScreen> {
                   await getData();
                 },
                 child: ListView.builder(
-                  itemBuilder: (context, index) =>CompanyPostWidget(post:  Provider.of<CompanyData>(context).companyPosts[index],),
+                  itemBuilder: (context, index) =>CompanyPostWidget(post:  Provider.of<CompanyData>(context).companyPosts[index], index: index),
                   itemCount: Provider.of<CompanyData>(context).companyPosts.length,
                   physics: BouncingScrollPhysics(),
                 ),

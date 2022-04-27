@@ -37,6 +37,11 @@ class CompanyData extends ChangeNotifier
       notifyListeners();
     });
   }
+  removeFromCompanyPost({required int index})
+  {
+    companyPosts.removeAt(index);
+    notifyListeners();
+  }
   addToCompanyPostList(Post post)
   {
     companyPosts.add(post);

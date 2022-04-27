@@ -9,7 +9,7 @@ class Post
   late String companyPhoto;
   late String companyId;
   bool isApplied=false;
-  Post({required this.id ,required companyId , required this.jobTitle, required this.companyName , required this.date , required this.post , required this.appliedNumber , required this.companyPhoto , required this.isApplied});
+  Post({required this.id ,required this.companyId , required this.jobTitle, required this.companyName , required this.date , required this.post , required this.appliedNumber , required this.companyPhoto , required this.isApplied});
 
   Post.fromJson(Map<String , dynamic> map)
   {
@@ -39,7 +39,7 @@ class Post
       'post':post,
       'appliedNumber' : appliedNumber,
       'companyPhoto':companyPhoto,
-      'companyId':companyId,
+      'companyId': companyId,
     };
   }
 

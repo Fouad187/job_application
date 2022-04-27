@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:job_app/Models/Post.dart';
 import 'package:job_app/Providers/company_data.dart';
 import 'package:job_app/Screens/Company/Applied_for_post_screen.dart';
+import 'package:job_app/Services/Company_Services.dart';
 import 'package:job_app/constant.dart';
 import 'package:provider/provider.dart';
 
 class CompanyPostWidget extends StatelessWidget {
   late Post post;
-  CompanyPostWidget({required this.post});
+  int index;
+  CompanyPostWidget({required this.post , required this.index});
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -46,11 +48,14 @@ class CompanyPostWidget extends StatelessWidget {
                     ],
                   ),
                   Spacer(),
-                 /* InkWell(
-                      onTap: (){},
-                      child: Icon(Icons.delete , color: Colors.grey,)),
+                  InkWell(
+                      onTap: (){
+                        CompanyServices.deletePost(id: post.id).then((value) {
+                          Provider.of<CompanyData>(context,listen: false).removeFromCompanyPost(index: index);
 
-                  */
+                        });
+                        },
+                      child: Icon(Icons.delete , color: kColor,)),
                 ],
               ),
               Divider(),

@@ -58,7 +58,7 @@ class CompanyServices
       }
     );
   }
-  Future<void> deletePost({required String id}) async 
+  static Future<void> deletePost({required String id}) async
   {
     await FirebaseFirestore.instance.collection('Posts').doc(id).delete().then((value)
     {
