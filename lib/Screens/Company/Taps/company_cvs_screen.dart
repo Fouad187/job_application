@@ -69,9 +69,12 @@ class _CompanyCvsScreenState extends State<CompanyCvsScreen> {
             Text('Cv in Selected Category' , style: TextStyle(color: Colors.grey),),
             Divider(),
             Provider.of<CompanyData>(context).Cvs.length > 0 ?
-            Column(
-              children: Provider.of<CompanyData>(context).Cvs.map((cv) => ShowCvWidget(cvModel: cv)).toList(),
-            ) : Container(),
+            Expanded(
+                child: ListView.builder(itemBuilder: (context, index) {
+                  return ShowCvWidget(cvModel: Provider.of<CompanyData>(context).Cvs[index]);
+                },
+                  itemCount: Provider.of<CompanyData>(context).Cvs.length,
+                ) ) : Container(),
           ],
         ),
       ),
